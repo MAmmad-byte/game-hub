@@ -8,6 +8,7 @@ import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatform";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
 export interface GameQuary {
   genre: Genre | null;
   platform: Platform | null;
@@ -45,22 +46,25 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <Flex paddingLeft={2} marginBottom={5}>
-          <PlatformSelector
-            onSelectPlatform={(platform) =>
-              setGameQuary({ ...gameQuary, platform: platform })
-            }
-            selectedPlatform={gameQuary.platform}
-          />
-          <Box marginLeft={5}>
-            <SortSelector
-              selectedSortOrder={gameQuary.sortOrder}
-              onSelectSortOrder={(order) =>
-                setGameQuary({ ...gameQuary, sortOrder: order })
+        <Box paddingLeft={2}>
+          <GameHeading gameQuary={gameQuary} />
+          <Flex marginBottom={5}>
+            <PlatformSelector
+              onSelectPlatform={(platform) =>
+                setGameQuary({ ...gameQuary, platform: platform })
               }
+              selectedPlatform={gameQuary.platform}
             />
-          </Box>
-        </Flex>
+            <Box marginLeft={5}>
+              <SortSelector
+                selectedSortOrder={gameQuary.sortOrder}
+                onSelectSortOrder={(order) =>
+                  setGameQuary({ ...gameQuary, sortOrder: order })
+                }
+              />
+            </Box>
+          </Flex>
+        </Box>
         <GameGrid gameQuary={gameQuary} />
       </GridItem>
     </Grid>
