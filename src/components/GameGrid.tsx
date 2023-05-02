@@ -3,8 +3,6 @@ import { SimpleGrid } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { Genre } from "../hooks/useGenre";
-import { Platform } from "../hooks/usePlatform";
 import { GameQuary } from "../App";
 
 interface Props {
@@ -13,9 +11,9 @@ interface Props {
 const GameGrid = ({ gameQuary }: Props) => {
   const { data, error, isLoading } = useGames(gameQuary);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  if (error) return <p>{error}</p>;
   return (
     <>
-      {error && <p>{error}</p>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, "2xl": 5 }}
         padding="10px"

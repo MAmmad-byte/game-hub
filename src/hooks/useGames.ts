@@ -15,5 +15,5 @@ export  interface Game {
     name:string;
     slug:string
   }
-const useGames = (gameQuary:GameQuary | null)=>useData<Game>("/games", {params:{genres: gameQuary?.genre?.id, parent_platforms: gameQuary?.platform?.id, order:gameQuary?.sortOrder}}, [gameQuary])
+const useGames = (gameQuary:GameQuary | null)=>useData<Game>("/games", {params:{genres: gameQuary?.genre?.id, parent_platforms: gameQuary?.platform?.id, order:gameQuary?.sortOrder, search:gameQuary?.searchText}}, [gameQuary])
 export default useGames
